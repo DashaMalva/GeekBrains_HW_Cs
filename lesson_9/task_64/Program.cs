@@ -18,19 +18,20 @@ while (n <= 0) {
 }
 
 
-void PrintRow(int bottom, int top) {
-    while (bottom < top) {
-        Console.Write($"{bottom}, ");
-        bottom++;
+string PrintRow(int bottom, int top) {
+    if (top < bottom) {
+        int temp = bottom;
+        bottom = top;
+        top = temp;
     }
-    Console.Write($"{top}");
+    if (bottom == top) {
+        return $"{top}";
+    }
+    else {    
+        return $"{bottom}, " + PrintRow(bottom + 1, top);
+    }
 }
 
 
-if (m < n) {
-   PrintRow(m, n);
-}
-else {
-    PrintRow(n, m);
-}
+Console.WriteLine(PrintRow(m, n));
 

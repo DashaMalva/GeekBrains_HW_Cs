@@ -18,18 +18,18 @@ while (n <= 0) {
 }
 
 
-int SumElementsInBetween(int bottom, int top) {
-    int result = 0;
-    while (bottom <= top) {
-        result += bottom;
-        bottom++;
+int SumRow(int bottom, int top) {
+    if (top < bottom) {
+        int temp = bottom;
+        bottom = top;
+        top = temp;
     }
-    return result;
+    if (bottom == top) {
+        return top;
+    }
+    else {    
+        return bottom + SumRow(bottom + 1, top);
+    }
 }
 
-if (m < n) {
-   Console.WriteLine(SumElementsInBetween(m, n));
-}
-else {
-    Console.WriteLine(SumElementsInBetween(n, m));
-}
+Console.WriteLine($"sum = {SumRow(m, n)}");
